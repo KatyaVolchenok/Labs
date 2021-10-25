@@ -35,7 +35,7 @@ public class Country {
 
     public void setName(String name) {
         if(name == null)
-            throw new IllegalArgumentException("Название страны не должно быть пустым!");
+            throw new IllegalArgumentException("Название страны не должно быть пустым.");
         this.name = name;
     }
 
