@@ -83,10 +83,11 @@ public class Country {
     }
 
     public void print() {
-        System.out.println(name + "; Площадь=" + square + "; Население=" + population
+        System.out.println(name + "; Площадь= " + square + "; Население= " + population
                 + "."); {
         if (population == 0){
-            System.out.println("Столица  " + capitalName + " с населением " + capitalPopulation);
+            System.out.println(name + "; Площадь= " + square + "; Население= " + population
+                + ".");
         }
           else if (capitalPopulation == 0){
             System.out.println("Столица  " + capitalName + " с населением " + capitalPopulation);
