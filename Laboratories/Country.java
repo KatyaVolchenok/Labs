@@ -42,7 +42,7 @@ public class Country {
         return square;
     }
     public void setSquare(int square) {
-        if(square > 0) {
+        if(square <= 0) {
         } else {
             throw new IllegalArgumentException("Площадь страны должна быть строго больше нуля.");
         }
@@ -84,7 +84,7 @@ public class Country {
 
     public void print() {
         System.out.println(name + "; Площадь= " + square + "; Население= " + population
-                + "."); {
+                + "; population density = " + getPopulationDensity()); {
         if (population == 0){
             System.out.println(name + "; Площадь= " + square + "; Население= " + population
                 + ".");
