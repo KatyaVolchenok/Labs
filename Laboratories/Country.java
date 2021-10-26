@@ -34,8 +34,7 @@ public class Country {
     }
 
     public void setName(String name) {
-        if(name == null)
-            throw new IllegalArgumentException("Название страны не должно быть пустым.");
+        if(name != null && ! name.equals("Название страны не должно быть пустым."))  
         this.name = name;
     }
 
@@ -43,8 +42,10 @@ public class Country {
         return square;
     }
     public void setSquare(int square) {
-        if(square <= 0)
+        if(square > 0) {
+        } else {
             throw new IllegalArgumentException("Площадь страны должна быть строго больше нуля.");
+        }
         this.square = square;
     }
 
@@ -82,13 +83,21 @@ public class Country {
     }
 
     public void print() {
-        System.out.println(name + "; square=" + square + "; population=" + population);
-
-        if(capitalName != null)
-            System.out.println("The capital is " + capitalName
-                    + " with population " + capitalPopulation);
-        System.out.println();
+        System.out.println(name + "; Площадь=" + square + "; Население=" + population
+                + "."); {
+        if (population == 0){
+            System.out.println("Столица  " + capitalName + " с населением " + capitalPopulation);
+        }
+          else if (capitalPopulation == 0){
+            System.out.println("Столица  " + capitalName + " с населением " + capitalPopulation);
+        }
+        else if(capitalName != null) {
+            System.out.println("Столица  " + capitalName + " с населением " + capitalPopulation);   
+       }
+        else System.out.println();
+        }
     }
+
 
     public static void printAll(Country[] countries) {
         for(Country c: countries)
@@ -98,11 +107,11 @@ public class Country {
 
     public static void main(String[] args) {
         Country[] countries = new Country[] {
-                new Country("Russia", 17_100_000, 146_700_000, "Moscow", 12_600_000),
-                new Country("Finland", 338_000, 5_500_000, "Helsinki", 655_000),
-                new Country("France", 643_800, 67_800_000, "Paris", 2_100_000),
-                new Country("Andorra", 467, 85_400, "Andorra la Vella", 22_600),
-                new Country("Singapore", 725, 5_700_000)
+                new Country("Россия", 17_100_000, 146_700_000, "Москва", 12_600_000),
+                new Country("Финляндия", 338_000, 5_500_000, "Хельсинки", 655_000),
+                new Country("Франция", 643_800, 67_800_000, "Париж", 2_100_000),
+                new Country("Андора", 467, 85_400, "Андорра да Велла", 22_600),
+                new Country("Сингапур", 725, 5_700_000)
         };
 
         Country.printAll(countries);
