@@ -15,97 +15,126 @@ public class Country {
     private int population;
     private String capitalName;
     private int capitalPopulation;
-    private int capitalSquare;
-
+    
+   
     public Country(String name, int square, int population) {
         setName(name);
         setSquare(square);
         setPopulation(population);
+        this.capitalName = "данные отсутсвуют";
     }
-
-
-    public Country(String name, int square, int population, String capitalName, int capitalPopulation) {
+    public Country(String name, int square, int population, String capitalName) {
         this(name, square, population);
-        setCapital(capitalName, capitalPopulation);
+         setCapitalName(capitalName);
+        
     }
-
+        public Country(String name, int square, String capitalName) {
+        setName(name);
+        setSquare(square);
+        setCapitalName(capitalName);
+    }
+    public Country(String name, int square,  String capitalName, int capitalPopulation) {
+        this(name, square, capitalName);
+        setCapitalPopulation(capitalPopulation);
+    }
+    public Country(String name, int square, int population, String capitalName, int capitalPopulation) {
+        this(name, square, population, capitalName);
+        setCapitalPopulation(capitalPopulation);
+    }
+    
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        if(name == null)
-            throw new IllegalArgumentException("Название страны не должно быть пустым.");
-        this.name = name;
-    }
-
     public int getSquare() {
         return square;
     }
-    public void setSquare(int square) {
-        if(square <= 0)
-            throw new IllegalArgumentException("Площадь страны должна быть строго больше нуля.");
-        this.square = square;
-    }
-
     public int getPopulation() {
         return population;
     }
-    public void setPopulation(int population) {
-        if(population <= 0)
-            throw new IllegalArgumentException("Население страны должно быть строго больше нуля.");
-        this.population = population;
+    public int getPopulationDensity() {
+        return population / square;
     }
-
-    public float getPopulationDensity() {
-        return ((float)population) / square;
-    }
-
+    
     public String getCapitalName() {
         return capitalName;
     }
-
-
     public int getCapitalPopulation() {
         return capitalPopulation;
     }
-
-    public void setCapital(String capitalName, int capitalPopulation) {
-        if(capitalName != null) {
-            if(capitalPopulation <= 0)
-                 throw new IllegalArgumentException("Население страны должно быть строго больше нуля.");
-        } else {
-            capitalPopulation = 0;
+    
+    
+    
+    public void setName(String name) {
+        if(name != null && ! name.equals("")) {  
+        this.name = name;
+    } else {
+           throw new IllegalArgumentException("Название страны не должно быть пустым!");
         }
+    }
+
+    
+    public void setSquare(int square) {
+        if(square > 0) {
+            this.square = square;
+        } else {
+            throw new IllegalArgumentException("Площадь страны должна быть строго больше нуля.");
+        }
+    }
+
+    
+    public void setPopulation(int population) {
+        if(population > 0) {
+            this.population = population;
+        } else {throw new IllegalArgumentException("Население страны должно быть строго больше нуля.");
+        }
+    }
+
+    public void setCapitalName(String capitalName) {
+        if(capitalName != null && !capitalName.equals("")){
         this.capitalName = capitalName;
+    } else { 
+           throw new IllegalArgumentException();
+    }
+    }
+    
+    public void setCapitalPopulation(int capitalPopulation) {
         this.capitalPopulation = capitalPopulation;
     }
-
+    
     public void print() {
-        System.out.println(name + "; square=" + square + "; population=" + population);
-
-        if(capitalName != null)
-            System.out.println("The capital is " + capitalName
-                    + " with population " + capitalPopulation);
-        System.out.println();
+        if(population == 0 && capitalPopulation == 0) {
+            System.out.println("Название страны: " + name + "; Площадь: " + square + " ; Население: данные отсутсвуют.  Столица: " + capitalName + " с населением: отсутсвуют.");
+        }
+        else if(population == 0) {
+            System.out.println("Название страны: " + name + "; Площадь: " + square + "; Население: данные отсутсвуют.  Столица: " + capitalName  + " с населением:" + capitalPopulation + ".");
+        }
+        else if(capitalPopulation == 0) {
+            System.out.println("Название страны: " + name + "; Площадь: " + square + "; Население: " + population + ". Столица: " + capitalName  + " с населением: данные отсутсвуют.");
+        }
+        else {
+            System.out.println("Название страны: " + name + "; Площадь: " + square + "; Население: " + population + ". Столица: " + capitalName  + " c населением: " + capitalPopulation + ".");
+        }
+        
     }
-
+           
+  
     public static void printAll(Country[] countries) {
-        for(Country c: countries)
-            c.print();
+        for(Country country : countries)
+            country.print();
     }
 
 
-    public static void main(String[] args) {
+   public static void main(String[] args) {
         Country[] countries = new Country[] {
-                new Country("Russia", 17_100_000, 146_700_000, "Moscow", 12_600_000),
-                new Country("Finland", 338_000, 5_500_000, "Helsinki", 655_000),
-                new Country("France", 643_800, 67_800_000, "Paris", 2_100_000),
-                new Country("Andorra", 467, 85_400, "Andorra la Vella", 22_600),
-                new Country("Singapore", 725, 5_700_000)
+                new Country("Россия", 17_100_000, 146_700_000, "Москва", 12_600_000),
+                new Country("Финляндия", 338_000, 5_500_000, "Хельсинки", 655_000),
+                new Country("Франция", 643_800, 67_800_000, "Париж", 2_100_000),
+                new Country("Андора", 467, 85_400, "Андорра да Велла", 22_600),
+                new Country("Сингапур", 725, 5_700_000)
         };
 
         Country.printAll(countries);
 
     }
-}
+    }
+
